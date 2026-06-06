@@ -1098,6 +1098,201 @@
         animation: none !important;
       }
     }
+
+    /* ============================================
+       RESPONSIVIDADE COMPLETA
+       Desktop (>900px) | Tablet (640px-900px) | Mobile (<640px)
+    ============================================ */
+
+    /* --- Desktop refinements (already base) --- */
+    @media (min-width: 1200px) {
+      .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .hero-title {
+        font-size: 4.25rem;
+      }
+    }
+
+    /* --- Tablet (640px - 899px) --- */
+    @media (min-width: 640px) and (max-width: 899px) {
+      .header-inner {
+        height: 68px;
+      }
+      .nav {
+        gap: 1.25rem;
+      }
+      .nav-link {
+        font-size: 0.85rem;
+      }
+      .hero {
+        padding: 4rem 0 5rem;
+      }
+      .hero-title {
+        font-size: 3rem;
+      }
+      .section-title {
+        font-size: 2.25rem;
+      }
+      .lancamentos-left {
+        top: 80px;
+      }
+      .releases-grid,
+      .events-grid {
+        gap: 1rem;
+      }
+    }
+
+    /* --- Mobile (<640px) --- */
+    @media (max-width: 639px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      /* Header */
+      .header-inner {
+        height: 64px;
+        gap: 0.75rem;
+      }
+      .nav {
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-link {
+        font-size: 0.75rem;
+      }
+      .btn-header {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.75rem;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 3rem 0 4rem;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.1;
+      }
+      .hero-description {
+        font-size: 1rem;
+      }
+      .hero-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1.5rem;
+      }
+
+      /* Sections */
+      .about,
+      .releases,
+      .gallery-section,
+      .events {
+        padding: 3rem 0;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .eyebrow {
+        font-size: 0.7rem;
+      }
+
+      /* Lançamentos split (left topics + right releases) */
+      .lancamentos-split {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .lancamentos-left {
+        position: static;
+        border-right: none;
+        padding-right: 0;
+        margin-bottom: 1rem;
+      }
+      .lancamentos-left h2 {
+        font-size: 1.8rem;
+      }
+      .lancamentos-left p {
+        max-width: 100%;
+      }
+      .track-topics {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .track-topic {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+        border-left: none;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 4px;
+      }
+      .track-topic.active {
+        background: var(--gold);
+        color: #0A0A0A;
+      }
+
+      /* Releases grid */
+      .releases-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      /* Gallery */
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-item {
+        aspect-ratio: 16 / 10;
+      }
+
+      /* Members list */
+      .member-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .member-socials {
+        margin-left: 58px; /* align under avatar */
+      }
+
+      /* Events */
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+      .event-card {
+        padding: 1rem;
+      }
+
+      /* Footer */
+      .footer-content {
+        gap: 1.5rem;
+      }
+      .footer-nav {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .footer-socials-icons {
+        gap: 0.4rem;
+      }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 380px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .nav-link {
+        font-size: 0.7rem;
+      }
+    }
   </style>
 </head>
 <body>
