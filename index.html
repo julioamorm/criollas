@@ -484,26 +484,43 @@
 
     /* NOVO LAYOUT CRIATIVO PARA ÚLTIMOS LANÇAMENTOS - Framer style scroll linked */
     .lancamentos-split {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 4rem;
-      align-items: start;
+      display: block; /* default: stacked for better mobile/small desktop */
     }
 
-    @media (max-width: 900px) {
+    @media (min-width: 768px) {
       .lancamentos-split {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 2.5rem;
+        align-items: start;
       }
-    }
-
-    .lancamentos-left {
-      position: sticky;
-      top: 100px;
-      align-self: start;
-      padding-top: 1rem;
-      padding-right: 2rem;
-      border-right: 1px solid rgba(212, 175, 55, 0.1);
+      .lancamentos-left {
+        position: sticky;
+        top: 90px;
+        align-self: start;
+        padding-top: 0.5rem;
+        padding-right: 1.5rem;
+        border-right: 1px solid rgba(212, 175, 55, 0.1);
+      }
+      .lancamentos-left h2 {
+        font-size: 1.9rem;
+      }
+      .lancamentos-left p {
+        font-size: 0.9rem;
+        max-width: 24ch;
+      }
+      .track-topics {
+        gap: 0.5rem;
+      }
+      .track-topic {
+        font-size: 0.85rem;
+      }
+      .lancamentos-right {
+        gap: 1.75rem;
+      }
+      .release-detail {
+        padding-bottom: 1.5rem;
+      }
     }
 
     .lancamentos-left h2 {
@@ -1237,6 +1254,28 @@
       .track-topic.active {
         background: var(--gold);
         color: #0A0A0A;
+      }
+
+      /* Make release details more compact on mobile to prevent overlap/cram */
+      .release-detail {
+        grid-template-columns: 80px 1fr;
+        gap: 0.75rem;
+        padding-bottom: 1.25rem;
+      }
+      .release-detail .cover {
+        width: 80px;
+        height: 80px;
+      }
+      .release-detail .info h3 {
+        font-size: 1.1rem;
+      }
+      .release-detail .info p {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
+      .release-detail .btn {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.7rem;
       }
 
       /* Releases grid */
