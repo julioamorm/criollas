@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criollas • Grupo de Artistas</title>
+  <meta name="description" content="Criollas — coletivo de artistas explorando novas sonoridades. Ouça nossa música e descubra o portfólio.">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --text-head: #9A9A9A;
+      --text-body: #CFCFCF;
+      --text-light: #F5F5F5;
+      --accent: #D4AF37;
+      --accent-dark: #b8962e;
+      --gold: #D4AF37;
+      --gold-dark: #b8962e;
+      --btn-text: #F5F5F5;
+      --red: #C1121F;
+      --muted: #9A9A9A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-body);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .logo,
+    .heading-display {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* HEADER - slightly more refined */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: var(--bg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.75rem;
+      color: var(--gold);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .logo:hover {
+      opacity: 0.85;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-head);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    .nav-link.active {
+      color: var(--gold);
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .header-actions {
+      flex-shrink: 0;
+    }
+
+    .btn-header {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      background-color: var(--accent);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-header:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    }
+
+    /* HERO - more creative with visual flow */
+    .hero {
+      padding: 5rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.1fr 1fr;
+        gap: 4rem;
+      }
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.875rem;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1.05;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero-title {
+        font-size: 4.5rem;
+      }
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 42ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      margin-top: 2.25rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2.1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: var(--accent);
+      color: var(--btn-text);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.9rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1.5px solid var(--gold);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+      border-color: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Creative Hero Visual - integrated */
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3.1;
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #111111 0%, #0a0a0a 55%, #050505 100%);
+      box-shadow: 0 25px 60px -15px rgb(0 0 0 / 0.6),
+                  0 10px 20px -8px rgb(0 0 0 / 0.4),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+    }
+
+    .hero-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(193, 18, 31, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 75% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 50%);
+    }
+
+    .hero-visual-play {
+      width: 82px;
+      height: 82px;
+      border-radius: 9999px;
+      background: rgba(245, 245, 245, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px -5px rgb(0 0 0 / 0.6),
+                  0 0 0 1px rgba(212, 175, 55, 0.35);
+      transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .hero-visual-play:hover {
+      transform: scale(1.08);
+    }
+
+    .hero-visual-play svg {
+      width: 32px;
+      height: 32px;
+      margin-left: 3px;
+      fill: var(--accent);
+    }
+
+    /* SOBRE - more integrated */
+    .about {
+      padding: 5rem 0;
+    }
+
+    .about-text {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--text-body);
+      margin-bottom: 1.35rem;
+    }
+
+    .about-essence {
+      margin-top: 2.25rem;
+      padding: 1.6rem 2rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(212, 175, 55, 0.045);
+      font-style: italic;
+      color: var(--text-head);
+      text-align: left;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ÚLTIMOS LANÇAMENTOS - more artistic cards */
+    .releases {
+      padding: 5rem 0 6rem;
+      background-color: #050505;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.75rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+
+    .releases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .releases-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .release-card {
+      background: #0f0f0f;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .release-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 175, 55, 0.28);
+    }
+
+    .release-card .cover {
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(145deg, #1f1f1f, #121212);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .release-card .cover::after {
+      content: "CRIOLLAS";
+      position: absolute;
+      bottom: 14px;
+      right: 16px;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: rgba(212, 175, 55, 0.25);
+      font-family: 'Lora', Georgia, serif;
+    }
+
+    .release-card-content {
+      padding: 1rem 1.1rem 1.15rem;
+    }
+
+    .release-card-title {
+      font-size: 1rem;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .release-card-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* Gallery styles from index.html */
+    .gallery-section {
+      padding: 4.5rem 0 5.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, #1a1a1a, #0c0c0c);
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.01);
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+
+    .gallery-item::after {
+      content: "CRIOLLAS";
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: rgba(212, 175, 55, 0.18);
+    }
+
+    .gallery-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.05);
+    }
+
+    /* Variações visuais para placeholders */
+    .gallery-item:nth-child(1) .gallery-img { background: linear-gradient(45deg, #1f1a17, #2a211c); }
+    .gallery-item:nth-child(2) .gallery-img { background: linear-gradient(135deg, #151515, #222); }
+    .gallery-item:nth-child(3) .gallery-img { background: linear-gradient(90deg, #181410, #25201b); }
+
+    /* NOVO LAYOUT CRIATIVO PARA ÚLTIMOS LANÇAMENTOS - Framer style scroll linked */
+    .lancamentos-split {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .lancamentos-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .lancamentos-left {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      padding-top: 1rem;
+      padding-right: 2rem;
+      border-right: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .lancamentos-left h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.25rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .lancamentos-left p {
+      font-size: 1rem;
+      color: var(--text-head);
+      max-width: 28ch;
+      margin-bottom: 2rem;
+    }
+
+    .track-topics {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .track-topic {
+      font-size: 0.95rem;
+      color: var(--text-head);
+      padding: 0.4rem 0;
+      cursor: pointer;
+      transition: color 0.2s ease, padding-left 0.2s ease;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+    }
+
+    .track-topic:hover {
+      color: var(--text-light);
+    }
+
+    .track-topic.active {
+      color: var(--text-light);
+      border-left-color: var(--gold);
+      padding-left: 1rem;
+      font-weight: 600;
+    }
+
+    .lancamentos-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .release-detail {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .release-detail:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .release-detail.active {
+      opacity: 1;
+    }
+
+    .release-detail .cover {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #222, #111);
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      flex-shrink: 0;
+    }
+
+    .release-detail .info h3 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.35rem;
+      color: var(--text-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .release-detail .info .meta {
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .release-detail .info p {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .release-detail .btn {
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 999px;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .release-detail .btn:hover {
+      background: var(--gold);
+      color: #0A0A0A;
+    }
+
+    /* VISUAIS - Creative integration of photos + videos */
+    .visuais {
+      padding: 5rem 0;
+    }
+
+    .visuais-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 220px;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .visuais-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 240px;
+      }
+    }
+
+    .visual-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      background: #111;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                  box-shadow 0.3s ease,
+                  border-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .visual-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -15px rgb(0 0 0 / 0.5);
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+
+    .visual-item.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    @media (max-width: 639px) {
+      .visual-item.featured {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+
+    .visual-thumb {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .visual-item:hover .visual-thumb {
+      transform: scale(1.08);
+    }
+
+    .visual-item.photo .visual-thumb {
+      background: linear-gradient(135deg, #222, #111);
+    }
+
+    .visual-item.video .visual-thumb {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    }
+
+    .visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.55) 65%,
+        rgba(0,0,0,0.75) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.1rem 1.25rem;
+      transition: background 0.3s ease;
+    }
+
+    .visual-item:hover .visual-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.65) 55%,
+        rgba(0,0,0,0.85) 100%
+      );
+    }
+
+    .visual-caption {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+
+    .visual-meta {
+      color: var(--text-head);
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 9999px;
+      background: rgba(245, 245, 245, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px -8px rgb(0 0 0 / 0.5);
+      transition: transform 0.2s ease, background 0.2s ease;
+      opacity: 0.95;
+    }
+
+    .visual-item.video:hover .play-button {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: var(--text-light);
+    }
+
+    .play-button svg {
+      width: 22px;
+      height: 22px;
+      margin-left: 3px;
+      fill: var(--accent);
+    }
+
+    .visual-item.photo .play-button {
+      display: none;
+    }
+
+    /* INTEGRANTES - kept clean but with more presence */
+    .members {
+      margin-top: 2rem;
+      padding-top: 2.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .members-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.35rem;
+      color: var(--text-light);
+      margin: 0.5rem 0 1.4rem;
+      text-align: center;
+    }
+
+    .members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .member-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0f0f0f;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .member-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 0;
+    }
+
+    .member-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #222, #111);
+    }
+
+    .member-item:nth-child(1) .member-avatar { background: linear-gradient(135deg, #3a2f28, #221c18); }
+    .member-item:nth-child(2) .member-avatar { background: linear-gradient(135deg, #2a2a2a, #1a1a1a); }
+    .member-item:nth-child(3) .member-avatar { background: linear-gradient(135deg, #2f2522, #1f1816); }
+    .member-item:nth-child(4) .member-avatar { background: linear-gradient(135deg, #252c24, #181f17); }
+
+    .member-name {
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+
+    .member-role {
+      font-size: 0.72rem;
+      color: var(--text-head);
+      margin-top: 0.05rem;
+    }
+
+    .member-socials {
+      display: flex;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .member-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      color: var(--gold);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .member-social-link:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+      color: #F5F5F5;
+    }
+
+    .member-social-link svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* PRÓXIMOS EVENTOS - kept the EM BREVE treatment */
+    .events {
+      padding: 5rem 0;
+      background: #050505;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .event-card {
+      background: #0f0f0f;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .event-card.coming-soon {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card.coming-soon .event-info {
+      filter: blur(3px);
+      opacity: 0.55;
+      transition: filter 0.3s ease;
+    }
+
+    .event-card.coming-soon::after {
+      content: "EM BREVE";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(10, 10, 10, 0.75);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      white-space: nowrap;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .event-date {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .event-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .event-location {
+      font-size: 0.85rem;
+      color: var(--text-head);
+    }
+
+    .event-link {
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      font-size: 0.8rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .event-link:hover {
+      background: var(--gold);
+      color: #0A0A0A;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #000;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-brand {
+      max-width: 260px;
+    }
+
+    .footer-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .footer-summary {
+      font-size: 0.85rem;
+      color: var(--text-head);
+      line-height: 1.5;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-nav {
+        flex-direction: row;
+        gap: 1.5rem;
+      }
+    }
+
+    .footer-nav a {
+      color: var(--text-head);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--gold);
+    }
+
+    .footer-socials {
+      margin-top: 1.5rem;
+    }
+
+    .footer-socials-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-head);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-socials-icons {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-socials-icons a {
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .footer-socials-icons a:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+    }
+
+    .footer-socials-icons svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .footer-bottom {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      color: var(--text-head);
+      text-align: center;
+    }
+
+    /* Base utilities */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.75rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo" aria-label="Criollas - Início">criollas.</a>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="#sobre" class="nav-link">Sobre</a>
+          <a href="#integrantes" class="nav-link">Integrantes</a>
+          <a href="#lancamentos" class="nav-link">Últimos Lançamentos</a>
+          <a href="#contato" class="nav-link">Contato Shous</a>
+        </nav>
+
+        <div class="header-actions">
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="btn-header">
+            Ouça agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO - more creative visual integration -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Coletivo de artistas</span>
+          <h1 class="hero-title">
+            Música que<br>transcende o tempo.
+          </h1>
+          <p class="hero-description">
+            Somos Criollas, um grupo de artistas que se encontra na intersecção entre tradição e 
+            vanguarda. Criamos experiências sonoras que conectam emoções, memórias e novos 
+            horizontes.
+          </p>
+          <div class="hero-actions">
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="btn-primary">
+              Ouça agora
+            </a>
+            <a href="#lancamentos" class="btn-secondary">
+              Últimos Lançamentos
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual" role="img" aria-label="Arte visual representativa do grupo Criollas">
+          <div class="hero-visual-inner">
+            <div class="hero-visual-play" onclick="window.open('https://youtube.com', '_blank')">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 5.14v14l11-7-11-7z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="hero-visual-title">criollas.</div>
+              <div class="hero-visual-subtitle">Em cada nota, uma verdade</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">O Coletivo</span>
+        <h2 class="section-title">Sobre</h2>
+      </div>
+      <div class="about-text">
+        <p>
+          Criollas é um coletivo de quatro artistas que se encontra no ponto de encontro entre tradição e invenção. 
+          Formado por Sofia Vale, Theo Cruz, Luna Mendes e Rafael Santos, o grupo constrói uma linguagem musical 
+          que atravessa memórias ancestrais, ritmos latino-americanos e experimentação contemporânea.
+        </p>
+        <p>
+          Cada composição nasce de um processo coletivo de escuta, onde a voz, o violão, a percussão e a produção 
+          se entrelaçam para criar paisagens sonoras que falam de afeto, território e tempo.
+        </p>
+        <div class="about-essence">
+          “Nossa música existe no espaço entre o que foi e o que ainda está por vir.”
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÚLTIMOS LANÇAMENTOS -->
+  <section id="lancamentos" class="releases">
+    <div class="container">
+      <div class="lancamentos-split">
+        <!-- Left: Sticky text + topics -->
+        <div class="lancamentos-left">
+          <h2>Últimos Lançamentos</h2>
+          <p>Exploramos novas camadas sonoras em cada faixa. Role para descobrir os últimos trabalhos do coletivo.</p>
+          
+          <ul class="track-topics">
+            <li class="track-topic active" data-target="caminhos">Caminhos Invisíveis</li>
+            <li class="track-topic" data-target="fronteira">Fronteira de Sal</li>
+            <li class="track-topic" data-target="peso">O Peso da Luz</li>
+          </ul>
+        </div>
+
+        <!-- Right: Scroll-synced releases -->
+        <div class="lancamentos-right">
+          <div id="caminhos" class="release-detail">
+            <div class="cover"></div>
+            <div class="info">
+              <h3>Caminhos Invisíveis</h3>
+              <div class="meta">Single • 2025</div>
+              <p>Uma reflexão sobre os espaços que habitamos quando ninguém está olhando. Percussão orgânica encontra texturas eletrônicas sutis.</p>
+              <a href="https://youtube.com" target="_blank" class="btn">Ouvir agora</a>
+            </div>
+          </div>
+
+          <div id="fronteira" class="release-detail">
+            <div class="cover"></div>
+            <div class="info">
+              <h3>Fronteira de Sal</h3>
+              <div class="meta">Single • 2024</div>
+              <p>Uma travessia sonora entre o deserto e o mar. Arranjos minimalistas que carregam peso emocional e paisagem.</p>
+              <a href="https://youtube.com" target="_blank" class="btn">Ouvir agora</a>
+            </div>
+          </div>
+
+          <div id="peso" class="release-detail">
+            <div class="cover"></div>
+            <div class="info">
+              <h3>O Peso da Luz</h3>
+              <div class="meta">EP • 2024</div>
+              <p>Quatro faixas que investigam o contraste entre sombra e claridade. Um trabalho de produção delicada e voz presente.</p>
+              <a href="https://youtube.com" target="_blank" class="btn">Ouvir agora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Nosso universo</span>
+        <h2 class="section-title">Galeria de Fotos</h2>
+      </div>
+
+      <!-- Galeria (3 fotos, inspirado no wireframe) -->
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="window.open('https://instagram.com', '_blank')">
+          <div class="gallery-img"></div>
+        </div>
+        <div class="gallery-item" onclick="window.open('https://instagram.com', '_blank')">
+          <div class="gallery-img"></div>
+        </div>
+        <div class="gallery-item" onclick="window.open('https://instagram.com', '_blank')">
+          <div class="gallery-img"></div>
+        </div>
+      </div>
+
+      <!-- Integrantes + Redes Sociais -->
+      <div id="integrantes" class="members">
+        <span class="eyebrow">A Criollas</span>
+        <h3 class="members-title">Nossos Integrantes</h3>
+
+        <div class="members-list">
+        <div class="member-item">
+          <div class="member-header">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="member-name">Sofia Vale</div>
+              <div class="member-role">Voz Principal • Composição</div>
+            </div>
+          </div>
+          <div class="member-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Instagram de Sofia Vale">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="member-social-link" aria-label="YouTube de Sofia Vale">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l6.425 4-6.425 4z"/></svg>
+            </a>
+            <a href="https://open.spotify.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Spotify de Sofia Vale">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="member-item">
+          <div class="member-header">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="member-name">Theo Cruz</div>
+              <div class="member-role">Violão • Arranjos</div>
+            </div>
+          </div>
+          <div class="member-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Instagram de Theo Cruz">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="member-social-link" aria-label="YouTube de Theo Cruz">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l6.425 4-6.425 4z"/></svg>
+            </a>
+            <a href="https://open.spotify.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Spotify de Theo Cruz">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="member-item">
+          <div class="member-header">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="member-name">Luna Mendes</div>
+              <div class="member-role">Percussão • Voz</div>
+            </div>
+          </div>
+          <div class="member-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Instagram de Luna Mendes">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="member-social-link" aria-label="YouTube de Luna Mendes">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l6.425 4-6.425 4z"/></svg>
+            </a>
+            <a href="https://open.spotify.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Spotify de Luna Mendes">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="member-item">
+          <div class="member-header">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="member-name">Rafael Santos</div>
+              <div class="member-role">Produção • Teclados</div>
+            </div>
+          </div>
+          <div class="member-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Instagram de Rafael Santos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="member-social-link" aria-label="YouTube de Rafael Santos">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l6.425 4-6.425 4z"/></svg>
+            </a>
+            <a href="https://open.spotify.com" target="_blank" rel="noopener" class="member-social-link" aria-label="Spotify de Rafael Santos">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÓXIMOS EVENTOS -->
+  <section id="eventos" class="events">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Agenda</span>
+        <h2 class="section-title">Próximos Eventos</h2>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card coming-soon">
+          <div class="event-info">
+            <div class="event-date">EM BREVE</div>
+            <div class="event-title">Novo Lançamento</div>
+            <div class="event-location">Detalhes em breve</div>
+          </div>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="event-link">Saiba mais</a>
+        </div>
+
+        <div class="event-card coming-soon">
+          <div class="event-info">
+            <div class="event-date">EM BREVE</div>
+            <div class="event-title">Novo Lançamento</div>
+            <div class="event-location">Detalhes em breve</div>
+          </div>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="event-link">Saiba mais</a>
+        </div>
+
+        <div class="event-card coming-soon">
+          <div class="event-info">
+            <div class="event-date">EM BREVE</div>
+            <div class="event-title">Novo Lançamento</div>
+            <div class="event-location">Detalhes em breve</div>
+          </div>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="event-link">Saiba mais</a>
+        </div>
+
+        <div class="event-card coming-soon">
+          <div class="event-info">
+            <div class="event-date">EM BREVE</div>
+            <div class="event-title">Novo Lançamento</div>
+            <div class="event-location">Detalhes em breve</div>
+          </div>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="event-link">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">criollas.</a>
+          <p class="footer-summary">
+            Um coletivo de artistas que transforma memória, território e afeto em som.
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Navegação do rodapé">
+          <a href="#sobre">Sobre</a>
+          <a href="#integrantes">Integrantes</a>
+          <a href="#lancamentos">Últimos Lançamentos</a>
+          <a href="#contato">Contato Shous</a>
+        </nav>
+      </div>
+
+      <div class="footer-socials">
+        <div class="footer-socials-title">Redes Sociais</div>
+        <div class="footer-socials-icons">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l6.425 4-6.425 4z"/></svg>
+          </a>
+          <a href="https://open.spotify.com" target="_blank" rel="noopener" aria-label="Spotify">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          </a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Criollas. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scrollspy - links the navigation to sections on scroll (Framer-like experience)
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('#sobre, #lancamentos, #galeria, #integrantes, #eventos');
+
+      function updateActiveLink() {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (scrollY >= sectionTop - 150) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink);
+      
+      // Initial check
+      updateActiveLink();
+
+      // Smooth scroll for nav links (enhanced)
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            e.preventDefault();
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Scroll-synced topics for Últimos Lançamentos (left text updates with right content on scroll)
+      const trackTopics = document.querySelectorAll('.track-topic');
+      const releaseDetails = document.querySelectorAll('.release-detail');
+
+      if (trackTopics.length && releaseDetails.length) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              
+              // Remove active from all topics
+              trackTopics.forEach(t => t.classList.remove('active'));
+              
+              // Activate the matching topic
+              const activeTopic = document.querySelector(`.track-topic[data-target="${id}"]`);
+              if (activeTopic) activeTopic.classList.add('active');
+            }
+          });
+        }, {
+          rootMargin: '-30% 0px -30% 0px', // triggers when the item is well into view
+          threshold: 0.5
+        });
+
+        releaseDetails.forEach(detail => observer.observe(detail));
+
+        // Make topics clickable - scroll to right side release
+        trackTopics.forEach(topic => {
+          topic.addEventListener('click', () => {
+            const targetId = topic.dataset.target;
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
